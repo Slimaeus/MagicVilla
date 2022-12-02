@@ -1,3 +1,4 @@
+using MagicVilla_VillaAPI;
 using MagicVilla_VillaAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,9 +9,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
 });
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddControllers(options =>
 {
-    options.ReturnHttpNotAcceptable = true;
+    //options.ReturnHttpNotAcceptable = true;
 })
     .AddNewtonsoftJson()
     .AddXmlDataContractSerializerFormatters();
