@@ -26,6 +26,9 @@ namespace MagicVilla_VillaAPI.Repositories
             var query = dbSet.AsQueryable<T>();
             if (!tracked)
                 query = query.AsNoTracking();
+            if (includeProperties != null)
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    query = query.Include(includeProperty);
             if (filter != null)
                 query = query.Where(filter);
             return (await query.FirstOrDefaultAsync())!;
@@ -34,7 +37,9 @@ namespace MagicVilla_VillaAPI.Repositories
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string includeProperties = null)
         {
             var query = dbSet.AsQueryable<T>();
-
+            if (includeProperties != null)
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    query = query.Include(includeProperty);
             if (filter != null)
                 query = query.Where(filter);
             return await query.ToListAsync();

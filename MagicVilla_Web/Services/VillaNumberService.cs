@@ -6,12 +6,10 @@ namespace MagicVilla_Web.Services
 {
     public class VillaNumberService : BaseService, IVillaNumberService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
         private string _villaUrl;
 
         public VillaNumberService(IHttpClientFactory httpClientFactory, IConfiguration configuration) : base(httpClientFactory)
         {
-            _httpClientFactory = httpClientFactory;
             _villaUrl = configuration.GetValue<string>("ServiceUrls:VillaAPI");
         }
 
