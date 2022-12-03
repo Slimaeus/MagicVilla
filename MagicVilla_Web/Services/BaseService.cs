@@ -13,7 +13,7 @@ namespace MagicVilla_Web.Services
         public APIResponse responseModel { get; set; }
         public BaseService(IHttpClientFactory httpClientFactory)
         {
-            responseModel= new APIResponse();
+            responseModel = new APIResponse();
             _httpClientFactory = httpClientFactory;
         }
 

@@ -5,116 +5,102 @@
 namespace MagicVillaVillaAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddForeignKeyToVillaTable : Migration
+    public partial class AddNullable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "VillaID",
+            migrationBuilder.AlterColumn<string>(
+                name: "SpecialDetails",
                 table: "VillaNumbers",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 3, 0, 25, 18, 947, DateTimeKind.Local).AddTicks(8));
+                value: new DateTime(2022, 12, 3, 11, 56, 4, 602, DateTimeKind.Local).AddTicks(9870));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 3, 0, 25, 18, 947, DateTimeKind.Local).AddTicks(23));
+                value: new DateTime(2022, 12, 3, 11, 56, 4, 602, DateTimeKind.Local).AddTicks(9885));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 3, 0, 25, 18, 947, DateTimeKind.Local).AddTicks(25));
+                value: new DateTime(2022, 12, 3, 11, 56, 4, 602, DateTimeKind.Local).AddTicks(9887));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 3, 0, 25, 18, 947, DateTimeKind.Local).AddTicks(26));
+                value: new DateTime(2022, 12, 3, 11, 56, 4, 602, DateTimeKind.Local).AddTicks(9889));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 3, 0, 25, 18, 947, DateTimeKind.Local).AddTicks(28));
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VillaNumbers_VillaID",
-                table: "VillaNumbers",
-                column: "VillaID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_VillaNumbers_Villas_VillaID",
-                table: "VillaNumbers",
-                column: "VillaID",
-                principalTable: "Villas",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                value: new DateTime(2022, 12, 3, 11, 56, 4, 602, DateTimeKind.Local).AddTicks(9890));
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_VillaNumbers_Villas_VillaID",
-                table: "VillaNumbers");
-
-            migrationBuilder.DropIndex(
-                name: "IX_VillaNumbers_VillaID",
-                table: "VillaNumbers");
-
-            migrationBuilder.DropColumn(
-                name: "VillaID",
-                table: "VillaNumbers");
+            migrationBuilder.AlterColumn<string>(
+                name: "SpecialDetails",
+                table: "VillaNumbers",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 2, 23, 58, 49, 879, DateTimeKind.Local).AddTicks(9059));
+                value: new DateTime(2022, 12, 3, 11, 17, 51, 784, DateTimeKind.Local).AddTicks(3672));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 2, 23, 58, 49, 879, DateTimeKind.Local).AddTicks(9070));
+                value: new DateTime(2022, 12, 3, 11, 17, 51, 784, DateTimeKind.Local).AddTicks(3692));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 2, 23, 58, 49, 879, DateTimeKind.Local).AddTicks(9072));
+                value: new DateTime(2022, 12, 3, 11, 17, 51, 784, DateTimeKind.Local).AddTicks(3699));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 4,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 2, 23, 58, 49, 879, DateTimeKind.Local).AddTicks(9073));
+                value: new DateTime(2022, 12, 3, 11, 17, 51, 784, DateTimeKind.Local).AddTicks(3705));
 
             migrationBuilder.UpdateData(
                 table: "Villas",
                 keyColumn: "Id",
                 keyValue: 5,
                 column: "CreatedDate",
-                value: new DateTime(2022, 12, 2, 23, 58, 49, 879, DateTimeKind.Local).AddTicks(9075));
+                value: new DateTime(2022, 12, 3, 11, 17, 51, 784, DateTimeKind.Local).AddTicks(3712));
         }
     }
 }

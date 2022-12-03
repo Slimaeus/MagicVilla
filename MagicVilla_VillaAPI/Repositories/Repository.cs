@@ -1,9 +1,7 @@
 ﻿using MagicVilla_VillaAPI.Data;
-using MagicVilla_VillaAPI.Models;
+using MagicVilla_VillaAPI.Repositories.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Linq;
-using MagicVilla_VillaAPI.Repositories.IRepository;
 
 namespace MagicVilla_VillaAPI.Repositories
 {
@@ -23,7 +21,7 @@ namespace MagicVilla_VillaAPI.Repositories
             await SaveAsync();
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
+        public async Task<T> GetAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true, string includeProperties = null)
         {
             var query = dbSet.AsQueryable<T>();
             if (!tracked)
@@ -33,7 +31,7 @@ namespace MagicVilla_VillaAPI.Repositories
             return (await query.FirstOrDefaultAsync())!;
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string includeProperties = null)
         {
             var query = dbSet.AsQueryable<T>();
 
