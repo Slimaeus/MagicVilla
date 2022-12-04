@@ -3,6 +3,7 @@ using MagicVilla_VillaAPI.Data;
 using MagicVilla_VillaAPI.Repositories;
 using MagicVilla_VillaAPI.Repositories.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -47,6 +48,12 @@ builder.Services.AddAuthentication(o =>
 builder.Services.AddControllers(options =>
 {
     //options.ReturnHttpNotAcceptable = true;
+    options.CacheProfiles.Add("Default30",
+        new CacheProfile()
+        {
+            Duration = 30,
+        }
+    );
 })
     .AddNewtonsoftJson()
     .AddXmlDataContractSerializerFormatters();
@@ -86,9 +93,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Magic_VillaV1");
+    options.RoutePrefix = string.Empty;
+});
 
 app.UseHttpsRedirection();
 
