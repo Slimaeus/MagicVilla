@@ -30,21 +30,13 @@ namespace MagicVilla_Web.Services
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data), Encoding.UTF8, "application/json");
                 }
-                switch (apiRequest.ApiType)
+                message.Method = apiRequest.ApiType switch
                 {
-                    case SD.ApiType.POST:
-                        message.Method = HttpMethod.Post;
-                        break;
-                    case SD.ApiType.PUT:
-                        message.Method = HttpMethod.Put;
-                        break;
-                    case SD.ApiType.DELETE:
-                        message.Method = HttpMethod.Delete;
-                        break;
-                    default:
-                        message.Method = HttpMethod.Get;
-                        break;
-                }
+                    SD.ApiType.POST   => HttpMethod.Post,
+                    SD.ApiType.PUT    => HttpMethod.Put,
+                    SD.ApiType.DELETE => HttpMethod.Delete,
+                    _                 => HttpMethod.Get
+                };
 
                 if (!string.IsNullOrEmpty(apiRequest.Token))
                 {
